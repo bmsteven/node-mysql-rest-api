@@ -28,14 +28,14 @@ app.get("/createdb", (req, res) => {
 })
 
 // create seller table
-// app.get("/createSellerTable", (req, res) => {
-//   let sql = "Create table sellers(id varchar(36) Primary key, firstName varchar(255), lastName varchar(255), email varchar(255), tel varchar(255) )"
+app.get("/createSellerTable", (req, res) => {
+  let sql = "Create table sellers(id varchar(36) Primary key, firstName varchar(255), lastName varchar(255), email varchar(255), tel varchar(255) )"
 
-//   db.query(sql, (err, result) => {
-//     if (err) throw err
-//     res.json(result)
-//   })
-// })
+  db.query(sql, (err, result) => {
+    if (err) throw err
+    res.json(result)
+  })
+})
 
 // app.get("/createProductsTable", (req, res) => {
 //   let sql = "create table products()"

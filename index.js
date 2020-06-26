@@ -6,11 +6,13 @@ const db = require("./src/models/db")
 
 const app = require("express")()
 
+const {register, login} = require("./src/routes/user")
+
 // parse requests of content-type: application/json
 app.use(bodyParser.json());
 
 // parse requests of content-type: application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // landing page of the api
 app.get("/", (req, res) => {
@@ -29,7 +31,7 @@ app.get("/createdb", (req, res) => {
 
 // create seller table
 app.get("/createSellerTable", (req, res) => {
-  let sql = "Create table sellers(id varchar(36) Primary key, firstName varchar(255), lastName varchar(255), email varchar(255), tel varchar(255) )"
+  let sql = "Create table sellers(id varchar(36) Primary key, firstName varchar(255), lastName varchar(255), email varchar(255), tel varchar(255), password varchar(255) )"
 
   db.query(sql, (err, result) => {
     if (err) throw err
@@ -37,14 +39,11 @@ app.get("/createSellerTable", (req, res) => {
   })
 })
 
-// app.get("/createProductsTable", (req, res) => {
-//   let sql = "create table products()"
+//creating users
+app.post("/register", register)
 
-//   db.query(sql, (err, result) => {
-//     if (err) throw err
-//     res.json(result)
-//   })
-// })
+//login
+app.post("/login", login)
 
 const PORT = process.env.PORT || 5000
 

@@ -8,6 +8,8 @@ const app = require("express")()
 
 const {register, login} = require("./src/routes/user")
 
+const {getProducts, getProductsBySeller, getSingleProduct, addProduct} = require("./src/routes/products")
+
 // parse requests of content-type: application/json
 app.use(bodyParser.json());
 
@@ -44,6 +46,14 @@ app.post("/register", register)
 
 //login
 app.post("/login", login)
+
+app.post("/addProduct", addProduct)
+
+app.get("/products", getProducts)
+
+app.get("/products/:productId", getSingleProduct)
+
+app.get("/products/:sellerId", getProductsBySeller)
 
 const PORT = process.env.PORT || 5000
 

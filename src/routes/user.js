@@ -3,11 +3,10 @@ const bcrypt = require( "bcryptjs" )
 const expressValidator = require( "express-validator" )
 
 const db = require( "../models/db" )
-const { password } = require( "../config/db.config" )
 
 let salt = bcrypt.genSaltSync( 12 );
 
-//register user with email and telephone number
+//register user/seller with email and telephone number
 exports.register = async ( req, res ) => {
 
     //gets password from the client
@@ -58,4 +57,6 @@ exports.register = async ( req, res ) => {
 }
 
 //login user/seller with telephone or email
-exports.login = ( req, res ) => { }
+exports.login = ( req, res ) => {
+
+}
